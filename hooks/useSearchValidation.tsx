@@ -1,15 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { searchSchema } from "@/schemas/schemas";
+import { ZodError } from "zod";
 
 export default function useSearchValidation(debouncedSearch: string) {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    if (debouncedSearch.length > 10) {
-      setErrorMsg("search input must not exceed 10 characters");
-    } else {
+    try {
+      searchSchema.parse({ input: debouncedSearch });
       setErrorMsg("");
+    } catch (error) {
+      if (error instanceof ZodError) {
+        setErrorMsg(error.errors[0].message);
+      }
     }
   }, [debouncedSearch]);
 
