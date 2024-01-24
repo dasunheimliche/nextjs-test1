@@ -9,7 +9,7 @@ export default function ToggleButton({
 
   return (
     <button
-      className="flex flex-col h-12 w-8 rounded justify-center items-center group absolute inset-0 mt-6 ml-9"
+      className="flex flex-col h-12 w-8 rounded justify-center items-center group absolute inset-0 mt-6 ml-9 z-[999]"
       onClick={onOpen}
     >
       <div

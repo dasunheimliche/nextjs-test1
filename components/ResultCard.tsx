@@ -9,12 +9,24 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-export default function ResultCard({ movie }: { movie: Movie }) {
-  const releaseYear = movie.release_date.split("-")[0];
+export default function ResultCard({
+  movie,
+  onSelectCardInMobile,
+}: {
+  movie: Movie;
+  onSelectCardInMobile?: () => void;
+}) {
+  let releaseYear;
+  if (movie.release_date) {
+    releaseYear = movie.release_date.split("-")[0];
+  }
 
   return (
     <Link href={`/${movie.id}`}>
-      <Card className=" bg-slate-900 cursor-pointer rounded-sm border-none hover:bg-slate-800">
+      <Card
+        className=" bg-slate-900 cursor-pointer rounded-sm border-none hover:bg-slate-800"
+        onClick={onSelectCardInMobile}
+      >
         <CardHeader>
           <CardTitle className="text-slate-50">
             {movie.title} {releaseYear ? `- ${releaseYear}` : ""}

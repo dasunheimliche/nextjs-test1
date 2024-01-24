@@ -10,7 +10,11 @@ import { useEffect, useState } from "react";
 import { Movie, MoviePage } from "@/app/types";
 import ResultCardLoading from "./ResultCardLoading";
 
-export default function SearchResults() {
+export default function SearchResults({
+  onSelectCardInMobile,
+}: {
+  onSelectCardInMobile?: () => void;
+}) {
   const { searchResult, searchInput } = useSearchStore();
 
   const { ref, inView } = useInView();
@@ -45,7 +49,7 @@ export default function SearchResults() {
   if (!searchInput) return null;
 
   return (
-    <ScrollArea className="">
+    <ScrollArea>
       <div className="flex flex-col gap-4 rounded">
         {!data?.pages &&
           Array.from({ length: 10 }).map((_n, i) => (
@@ -54,7 +58,11 @@ export default function SearchResults() {
         {data &&
           data.pages?.map((page: MoviePage) => {
             return page.results?.map((mov: Movie) => (
-              <ResultCard key={mov.id} movie={mov} />
+              <ResultCard
+                key={mov.id}
+                movie={mov}
+                onSelectCardInMobile={onSelectCardInMobile}
+              />
             ));
           })}
       </div>
