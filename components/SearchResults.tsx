@@ -48,7 +48,9 @@ export default function SearchResults() {
     <ScrollArea className="">
       <div className="flex flex-col gap-4 rounded">
         {!data?.pages &&
-          Array.from({ length: 10 }).map(() => <ResultCardLoading />)}
+          Array.from({ length: 10 }).map((_n, i) => (
+            <ResultCardLoading key={i} />
+          ))}
         {data &&
           data.pages?.map((page: MoviePage) => {
             return page.results?.map((mov: Movie) => (

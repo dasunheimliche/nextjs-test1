@@ -10,11 +10,12 @@ export default function BgImage({ movie }: { movie: any }) {
           alt="bg"
           style={{
             objectFit: "cover",
-            opacity: "35%",
+            // opacity: "35%",
           }}
           priority
         />
       )}
+      <div className="bg-slate-900/50  w-full h-full absolute backdrop-filter backdrop-blur-[7px]"></div>
     </div>
   );
 }
