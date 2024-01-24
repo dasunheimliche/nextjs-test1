@@ -20,7 +20,7 @@ export default async function Details({ movie }: { movie: Movie }) {
 
   const releaseYear = movie.release_date.split("-")[0];
   return (
-    <div className="mt-2">
+    <div className="mt-5">
       {`${movie.original_language.toUpperCase()} | ${releaseYear} |`}
       <span>
         {movieGenres.map((genre) => (
