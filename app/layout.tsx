@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ReactQueryClientProvider>
-        <body className="flex">
+        <body className="flex bg-slate-950">
           <Sidebar />
           {children}
         </body>

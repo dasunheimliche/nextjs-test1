@@ -18,17 +18,16 @@ export default function Sidebar() {
       <ToggleButton isOpen={isOpen} onOpen={() => setIsOpen(!isOpen)} />
       <aside
         className={cn(
-          "max-sm:max-w-full max-sm:min-w-full max-sm:absolute max-sm:inset-0 w-[27rem] min-w-[27rem] max-w-[27rem] px-10  bg-slate-950 h-full flex flex-col gap-4 pt-20 z-50 transition-all",
-          isOpen ? "" : "w-0 min-w-0 max-0 p-0 max-sm:min-w-0"
+          "overflow-hidden max-sm:max-w-full max-sm:min-w-full max-sm:absolute max-sm:inset-0 w-[27rem] min-w-[27rem] max-w-[27rem] px-10  bg-slate-950 h-full flex flex-col gap-4 pt-20 z-50 transition-all duration-150",
+          isOpen ? "" : "w-0 min-w-0 max-0 p-0 max-sm:min-w-0 opacity-0"
         )}
       >
-        <ToggleButton isOpen={isOpen} onOpen={() => setIsOpen(!isOpen)} />
-        {isOpen && <SearchForm />}
-        {isOpen && (
-          <SearchResults
-            onSelectCardInMobile={isMobile ? () => setIsOpen(false) : undefined}
-          />
-        )}
+        <SearchForm />
+        (
+        <SearchResults
+          onSelectCardInMobile={isMobile ? () => setIsOpen(false) : undefined}
+        />
+        )
       </aside>
     </>
   );
