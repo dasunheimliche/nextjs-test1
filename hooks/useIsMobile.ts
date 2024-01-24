@@ -1,19 +1,25 @@
 import { useState, useEffect } from "react";
 
 export const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 640);
+  const isServer = typeof window === "undefined";
+
+  const [isMobile, setIsMobile] = useState(
+    isServer ? false : window.innerWidth <= 640
+  );
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 640);
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    if (!isServer) {
+      window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, [isServer]);
 
   return isMobile;
 };
